@@ -1,0 +1,597 @@
+[
+  {
+    "id": "q001",
+    "topic": "自我介绍与项目经历",
+    "question": "请做一下自我介绍，重点介绍你的技术背景",
+    "difficulty": "easy",
+    "answer_guide": "结构化回答：背景（学校/专业）→ 核心技能（Python、LLM应用开发、RAG、Agent）→ 代表项目（silver-memory记忆管理系统）→ 求职意向。突出与岗位相关的具体技术：embedding、向量数据库、function calling、流式输出。避免空洞的\"热爱AI\"，用数据说话，例如：系统延迟降低30%、支持XX用户并发。"
+  },
+  {
+    "id": "q002",
+    "topic": "自我介绍与项目经历",
+    "question": "你做过哪些 AI 相关项目？请详细介绍一个你最有成就感的",
+    "difficulty": "medium",
+    "answer_guide": "用STAR法则：背景（为什么做这个项目）→ 任务（解决什么问题）→ 行动（技术选型、关键设计决策）→ 结果（量化指标）。AI项目重点：选用了哪种LLM、如何处理知识注入、评估方案怎么设计。面试官希望看到对技术取舍的理解，而非仅罗列技术栈。"
+  },
+  {
+    "id": "q003",
+    "topic": "自我介绍与项目经历",
+    "question": "你在项目中遇到的最大技术挑战是什么？怎么解决的？",
+    "difficulty": "medium",
+    "answer_guide": "避开\"遇到bug然后debug\"这类表浅回答。好的答案应涉及：系统性问题（如RAG召回质量差、Agent工具调用不稳定）→ 根因分析过程 → 采用的解决方案（如增加reranker、改进prompt工程、引入hybrid search）→ 效果验证。展示工程化思维和问题定位能力。"
+  },
+  {
+    "id": "q004",
+    "topic": "自我介绍与项目经历",
+    "question": "你是怎么学习 AI 相关技术的？有哪些学习资源推荐？",
+    "difficulty": "easy",
+    "answer_guide": "体现主动学习能力：论文精读（Attention Is All You Need、RAG原论文）→ 开源项目实践（LangChain、LlamaIndex源码阅读）→ 跟进社区动态（Hugging Face博客、arXiv）→ 自主搭建项目验证理解。推荐资源：fast.ai、DeepLearning.AI短课、Andrej Karpathy的讲解视频。"
+  },
+  {
+    "id": "q005",
+    "topic": "自我介绍与项目经历",
+    "question": "讲一个你用 Python 解决实际问题的例子",
+    "difficulty": "easy",
+    "answer_guide": "聚焦工程实践：用asyncio处理并发LLM调用、用Pydantic做数据验证、用FastAPI构建API服务。强调Python在AI工程中的具体价值：生态丰富（transformers、sentence-transformers）、快速原型验证、与主流LLM SDK无缝集成。避免仅提爬虫或数据分析脚本。"
+  },
+  {
+    "id": "q006",
+    "topic": "自我介绍与项目经历",
+    "question": "你了解 RAG 技术吗？能介绍一下你的项目中是怎么用的？",
+    "difficulty": "medium",
+    "answer_guide": "先讲RAG定义和核心价值（知识更新、减少幻觉），再结合项目说明：文档处理pipeline（PDF解析→chunk切分→embedding生成→向量入库）、检索策略（语义检索+BM25混合）、prompt组装方式、上下文窗口管理。如有评估指标（如RAGAS的faithfulness、context_recall）更佳。"
+  },
+  {
+    "id": "q007",
+    "topic": "自我介绍与项目经历",
+    "question": "你的项目是怎么部署的？有没有遇到上线问题？",
+    "difficulty": "medium",
+    "answer_guide": "讲清楚部署架构：Docker容器化 → CI/CD（GitHub Actions）→ 云平台（Render/Vercel/阿里云）。上线常见问题：环境变量泄露、依赖版本不一致、LLM API超时导致的请求积压、CORS配置错误。展示对生产环境的认知：健康检查、日志收集、错误监控（Sentry）。"
+  },
+  {
+    "id": "q008",
+    "topic": "自我介绍与项目经历",
+    "question": "你最近在学习什么新技术？为什么选择它？",
+    "difficulty": "easy",
+    "answer_guide": "体现对AI领域前沿的持续关注，选择有实际工程价值的技术：如MCP（Model Context Protocol）、LLM推理优化（vLLM、SGLang）、多模态（GPT-4V应用）、Agent框架（AutoGen）。重要的是说清楚\"为什么\"——对应实际业务场景或解决了哪类工程痛点。"
+  },
+  {
+    "id": "q009",
+    "topic": "自我介绍与项目经历",
+    "question": "你如何评估一个 AI 项目的质量好坏？",
+    "difficulty": "medium",
+    "answer_guide": "多维度评估：功能正确性（自动化测试、人工评测）→ 系统性能（延迟P95、吞吐量）→ AI质量（针对RAG用RAGAS框架，针对生成质量用BERTScore或LLM-as-judge）→ 用户体验（满意度、任务完成率）→ 成本（token消耗、API费用）。好的AI工程师需要设计评估体系，而非依赖直觉。"
+  },
+  {
+    "id": "q010",
+    "topic": "自我介绍与项目经历",
+    "question": "你的项目中有哪些可以改进的地方？",
+    "difficulty": "medium",
+    "answer_guide": "展示自省能力和技术深度。诚实指出当前局限：如检索精度不足（可引入reranker或GraphRAG）、缺少完整的评估流水线、未做细粒度的缓存优化、Agent稳定性有待提升。重要的是提出改进方案，而非仅描述问题——这体现了候选人的技术规划能力。"
+  },
+  {
+    "id": "q011",
+    "topic": "自我介绍与项目经历",
+    "question": "你有没有阅读过 LLM 相关的论文？介绍一篇对你影响最大的",
+    "difficulty": "hard",
+    "answer_guide": "推荐几篇高影响力论文：《Attention Is All You Need》（Transformer基础）、《RAG》原论文（Lewis 2020）、《ReAct》（Yao 2022，Agent推理框架）、《Chain-of-Thought Prompting》。需要说清楚：论文核心贡献、解决了什么问题、如何影响了你的工程实践。空谈论文名字无加分效果。"
+  },
+  {
+    "id": "q012",
+    "topic": "自我介绍与项目经历",
+    "question": "如果让你从零开始搭建一个 AI 应用，你的技术选型是什么？",
+    "difficulty": "hard",
+    "answer_guide": "系统化思考：LLM选型（成本/性能/延迟权衡：DeepSeek性价比高、Claude质量强）→ 框架（FastAPI后端、Next.js前端）→ 向量库（ChromaDB轻量自托管或Pinecone托管）→ 编排（直接API调用 vs LangChain）→ 监控（LangSmith或自建日志）→ 部署（Docker + Render/阿里云）。体现架构思维和对权衡的理解。"
+  },
+  {
+    "id": "q013",
+    "topic": "自我介绍与项目经历",
+    "question": "描述一次你主动优化系统性能的经历",
+    "difficulty": "medium",
+    "answer_guide": "聚焦可量化的优化：如将RAG检索从串行改为并行（asyncio.gather）使延迟降低40%；对embedding计算结果添加Redis缓存减少重复计算；用流式输出（SSE）改善用户感知响应时间。需要说明：发现问题的方法（profiling/日志分析）、优化思路、最终效果对比。"
+  },
+  {
+    "id": "q014",
+    "topic": "自我介绍与项目经历",
+    "question": "你在项目中是如何处理 LLM 的 token 成本问题的？",
+    "difficulty": "medium",
+    "answer_guide": "token成本控制实践：prompt压缩（去冗余上下文）→ 缓存高频相同请求 → 选择合适模型（简单任务用轻量模型）→ chunk大小优化（避免传入过多无关context）→ 对话历史截断策略（滑动窗口或摘要压缩）→ 批量请求合并。AI工程的商业意识是大厂面试加分项。"
+  },
+  {
+    "id": "q015",
+    "topic": "自我介绍与项目经历",
+    "question": "你在团队协作中扮演什么角色？有没有和算法工程师合作的经历？",
+    "difficulty": "easy",
+    "answer_guide": "AI应用工程师的界面是：对上承接算法团队的模型输出（模型接口规范、评估标准）、对下负责服务化和用户体验（API设计、流式输出、性能优化）。体现跨角色沟通能力：如何把模型局限性转化为产品策略、如何和前端对齐交互需求。"
+  },
+  {
+    "id": "q016",
+    "topic": "自我介绍与项目经历",
+    "question": "你如何保持对 AI 行业快速变化的跟进？",
+    "difficulty": "easy",
+    "answer_guide": "具体的信息源策略：每日浏览arXiv（cs.AI/cs.CL分类）→ 关注Hugging Face Papers周报 → 订阅AI newsletters（The Batch、Last Week in AI）→ 参与GitHub开源项目讨论 → 本地复现新技术demo验证可行性。关键是形成\"看到→理解→实践\"的闭环，而非单纯信息消费。"
+  },
+  {
+    "id": "q017",
+    "topic": "RAG系统理解",
+    "question": "什么是 RAG？为什么需要它而不是直接用 LLM？",
+    "difficulty": "easy",
+    "answer_guide": "RAG (Retrieval-Augmented Generation) 将检索系统与生成模型结合，解决 LLM 知识截止日期问题和幻觉问题。核心流程：将文档向量化存入向量库，查询时检索相关文档，与问题一起送入 LLM 生成回答。相比微调，RAG 成本低、可实时更新知识库，适合企业私域知识场景。关键组件：Embedding 模型、向量数据库、LLM。"
+  },
+  {
+    "id": "q018",
+    "topic": "RAG系统理解",
+    "question": "向量数据库和传统数据库有什么区别？",
+    "difficulty": "easy",
+    "answer_guide": "传统数据库（MySQL/PostgreSQL）基于精确匹配和结构化查询，向量数据库（ChromaDB/Pinecone/Weaviate/Milvus）基于相似度检索（ANN近似最近邻）。向量数据库存储高维embedding向量，支持余弦相似度、欧氏距离等度量。查询时返回语义相似内容而非精确匹配。索引结构通常用HNSW（分层可导航小世界图）。"
+  },
+  {
+    "id": "q019",
+    "topic": "RAG系统理解",
+    "question": "什么是 embedding？怎么选择 embedding 模型？",
+    "difficulty": "easy",
+    "answer_guide": "Embedding是将文本映射到高维稠密向量空间，使语义相似的文本在向量空间中距离更近。选型标准：任务匹配（中文语料优先选BGE/text2vec-base-chinese）、维度（768/1536，高维质量好但存储贵）、最大token长度（长文档需长窗口模型）、延迟和成本（本地部署vs API）。评估用MTEB榜单。"
+  },
+  {
+    "id": "q020",
+    "topic": "RAG系统理解",
+    "question": "RAG 的 chunking 策略有哪些？各有什么优缺点？",
+    "difficulty": "medium",
+    "answer_guide": "主要策略：固定长度切分（简单，但可能切断语义）→ 基于句子/段落的语义切分（保留语义完整性）→ 滑动窗口切分（有overlap减少边界丢失）→ 递归切分（LangChain RecursiveCharacterTextSplitter按段落→句子→字符递归）→ 语义聚类切分（相似句子合并）→ 小到大检索（小chunk检索、大chunk送入LLM）。chunk大小权衡：大chunk上下文丰富但噪声多，小chunk精准但语义不完整。"
+  },
+  {
+    "id": "q021",
+    "topic": "RAG系统理解",
+    "question": "如何评估 RAG 系统的检索质量？",
+    "difficulty": "medium",
+    "answer_guide": "评估框架RAGAS核心指标：Context Precision（检索内容与问题的相关性）、Context Recall（相关文档是否都被检索到）、Faithfulness（回答是否基于检索内容，不幻觉）、Answer Relevancy（回答是否切题）。工程化评估：构建golden dataset（问题+标准答案+相关文档）→ 自动化跑指标 → 人工抽样复核。Hit@K和MRR也是常用检索指标。"
+  },
+  {
+    "id": "q022",
+    "topic": "RAG系统理解",
+    "question": "什么是 hybrid search？为什么比纯向量检索效果好？",
+    "difficulty": "medium",
+    "answer_guide": "Hybrid search结合稀疏检索（BM25/TF-IDF，关键词精确匹配）和稠密检索（embedding语义相似度）。纯向量检索对专有名词、代码、型号等精确词汇效果差；BM25对语义理解差。混合搜索通过RRF（Reciprocal Rank Fusion）或加权合并两路结果，互补优势。研究表明混合搜索在多数任务上比单一方法高5-15%。"
+  },
+  {
+    "id": "q023",
+    "topic": "RAG系统理解",
+    "question": "reranking 是什么？什么时候需要用？",
+    "difficulty": "medium",
+    "answer_guide": "Reranker是第二阶段精排模型，对初步检索的候选文档重新打分排序。常用方案：cross-encoder（BGE-Reranker、Cohere Rerank API）比embedding更精准但更慢。适用场景：检索召回数较多（Top-K=20）但送入LLM的只能用Top-3时；对精度要求高的垂直领域；初步检索质量不理想时。代价是增加一次推理延迟（约100-300ms）。"
+  },
+  {
+    "id": "q024",
+    "topic": "RAG系统理解",
+    "question": "RAG 系统的延迟如何优化？",
+    "difficulty": "hard",
+    "answer_guide": "多层面优化：1) 并行化（embedding计算和BM25检索并发执行）2) 缓存（对相同或相似查询缓存embedding和检索结果）3) 精简chunk数量（精准召回Top-3而非Top-20）4) 选择快速embedding服务（本地小模型vs API权衡）5) 流式输出（SSE让用户感知首字节时间）6) 预计算（文档入库时预生成embedding）7) 向量库索引调优（HNSW参数ef_search/m）。"
+  },
+  {
+    "id": "q025",
+    "topic": "RAG系统理解",
+    "question": "什么是 HyDE (Hypothetical Document Embeddings)？",
+    "difficulty": "hard",
+    "answer_guide": "HyDE是一种查询增强技术：先用LLM根据问题生成一段假设性回答文档，再用这段文档的embedding去检索向量库，而非直接用问题embedding检索。原理：假设文档和真实文档在向量空间更接近（比问题和文档的分布更匹配）。适用于问题和文档表述差异较大的场景。缺点：增加一次LLM调用延迟；如果LLM生成的假设文档偏差大，可能降低精度。"
+  },
+  {
+    "id": "q026",
+    "topic": "RAG系统理解",
+    "question": "你了解 GraphRAG 吗？和普通 RAG 有什么区别？",
+    "difficulty": "hard",
+    "answer_guide": "GraphRAG（微软提出）将文档解析为知识图谱（实体+关系），检索时利用图结构进行关联推理。普通RAG：文档→chunks→相似度检索，适合局部信息查询。GraphRAG优势：支持跨文档多跳推理、能回答\"全局性\"问题（如整个文档集的主题是什么）。劣势：构建知识图谱成本高（需要LLM提取实体关系）、延迟高。适合知识密集型垂直领域（法律、医疗）。"
+  },
+  {
+    "id": "q027",
+    "topic": "RAG系统理解",
+    "question": "如何处理 RAG 中的多轮对话上下文？",
+    "difficulty": "medium",
+    "answer_guide": "多轮对话RAG挑战：用户问题可能依赖上文（如\"这个人是谁？\"）。解决方案：查询改写（将多轮对话历史+当前问题送给LLM，生成独立完整的查询语句）→ 再执行检索。上下文窗口管理：维护有限长度的对话历史（滑动窗口或摘要压缩）。实践中通常用独立查询改写模块（LangChain的create_history_aware_retriever）。"
+  },
+  {
+    "id": "q028",
+    "topic": "RAG系统理解",
+    "question": "向量数据库的索引算法有哪些？HNSW 是什么？",
+    "difficulty": "hard",
+    "answer_guide": "主要ANN索引算法：HNSW（分层可导航小世界图，查询快、精度高，内存占用大）、IVF（倒排文件索引，分cluster检索，内存友好）、PQ（乘积量化，压缩向量存储）、ScaNN（Google，大规模高性能）。HNSW原理：构建多层图结构，高层稀疏导航，底层精细搜索，类似跳表。ChromaDB默认使用HNSW。调参关键：M（图的连接数）、ef_construction（构建时搜索宽度）、ef_search（查询时搜索宽度）。"
+  },
+  {
+    "id": "q029",
+    "topic": "RAG系统理解",
+    "question": "RAG 中如何处理文档更新和知识库维护？",
+    "difficulty": "medium",
+    "answer_guide": "知识库维护策略：增量更新（新增文档直接embed入库，删除使用向量库的delete接口）→ 文档版本管理（记录文档hash，检测变更时重新embed）→ 定期全量重建（数据量小时推荐）→ 元数据过滤（给每个chunk标记来源、时间、版本，检索时可按元数据过滤最新内容）。生产环境注意：embedding过程异步化，不阻塞查询服务。"
+  },
+  {
+    "id": "q030",
+    "topic": "RAG系统理解",
+    "question": "什么是 Self-RAG？和标准 RAG 相比有什么改进？",
+    "difficulty": "hard",
+    "answer_guide": "Self-RAG是一种改进框架，让LLM自主决定是否需要检索（而非每次都检索）。通过特殊token（Retrieve/ISREL/ISSUP/ISUSE）引导模型判断：是否需要检索？检索到的内容是否相关？生成的内容是否有依据？优点：避免不必要的检索、提升生成质量。与标准RAG区别：标准RAG固定检索流程，Self-RAG是自适应检索决策。适合回答多样性问题（有些问题LLM直接知道，无需检索）。"
+  },
+  {
+    "id": "q031",
+    "topic": "RAG系统理解",
+    "question": "如何防止 RAG 系统产生幻觉？",
+    "difficulty": "medium",
+    "answer_guide": "多重防御：1) 提示工程（明确要求只基于提供的文档回答，无法回答时直接说不知道）2) 引用机制（要求LLM输出信息来源，便于用户核查）3) 忠实度检测（用NLI模型或LLM-as-judge判断回答是否有文档支撑）4) 提高检索质量（更相关的context减少LLM\"脑补\"机会）5) 降低temperature（减少随机性）。完全消除幻觉目前不可能，工程上做到可控才是目标。"
+  },
+  {
+    "id": "q032",
+    "topic": "RAG系统理解",
+    "question": "什么是 Parent Document Retriever？为什么要用它？",
+    "difficulty": "hard",
+    "answer_guide": "Parent Document Retriever是一种检索策略：存储时将文档切为小chunk（精准匹配），但检索到小chunk后返回其父级大chunk给LLM（保留上下文）。解决了矛盾：小chunk检索精准但上下文不足，大chunk上下文完整但检索精度低。实现：维护小chunk到父chunk的映射关系。LangChain有内置实现。适合结构化文档（技术手册、合同）的RAG场景。"
+  },
+  {
+    "id": "q033",
+    "topic": "Agent与工具调用",
+    "question": "什么是 AI Agent？和普通 LLM 调用有什么区别？",
+    "difficulty": "easy",
+    "answer_guide": "普通LLM调用：输入prompt → 输出文本，单次无状态。AI Agent：具备感知、规划、行动、记忆能力的自主系统，能循环调用工具解决复杂任务。核心区别：Agent有动态决策循环（Reasoning + Acting）、能调用外部工具（搜索、代码执行、数据库查询）、维护状态和记忆。典型框架：ReAct（推理+行动交替）、Plan-and-Execute。"
+  },
+  {
+    "id": "q034",
+    "topic": "Agent与工具调用",
+    "question": "解释一下 ReAct 框架的工作原理",
+    "difficulty": "medium",
+    "answer_guide": "ReAct（Reasoning + Acting）让LLM交替进行推理（Thought）和行动（Action），并观察结果（Observation），直到得出最终答案。流程：Thought（分析当前情况）→ Action（调用工具）→ Observation（获取工具结果）→ 循环直到Final Answer。优势：推理过程可解释、能动态调整计划。局限：依赖LLM推理质量，容易陷入无效循环。"
+  },
+  {
+    "id": "q035",
+    "topic": "Agent与工具调用",
+    "question": "function calling 是怎么工作的？举例说明",
+    "difficulty": "easy",
+    "answer_guide": "Function calling（工具调用）：将工具定义（名称、参数schema、描述）以JSON格式传给LLM，LLM根据用户意图决定是否调用工具及传入什么参数，返回结构化调用指令（非文本），应用层执行工具获取结果再送回LLM生成最终回答。例：用户问天气 → LLM输出{tool: get_weather, params: {city: '北京'}} → 执行API → 将结果传回LLM → 生成自然语言回答。"
+  },
+  {
+    "id": "q036",
+    "topic": "Agent与工具调用",
+    "question": "如何防止 Agent 陷入无限循环？",
+    "difficulty": "medium",
+    "answer_guide": "防循环策略：1) 硬限制（最大步骤数/工具调用次数，如max_iterations=10）2) 工具调用去重（检测是否连续调用相同工具+相同参数）3) 进度检测（判断每步是否有新信息/进展）4) timeout（单次工具调用超时 + 整体Agent会话超时）5) 状态追踪（记录已执行的操作序列，检测重复模式）6) 回退机制（超限后返回部分结果或友好提示）。生产系统必须设置所有硬限制。"
+  },
+  {
+    "id": "q037",
+    "topic": "Agent与工具调用",
+    "question": "Agent 的工具设计原则是什么？",
+    "difficulty": "medium",
+    "answer_guide": "优秀工具设计原则：1) 单一职责（每个工具做好一件事，不要设计万能工具）2) 清晰的参数schema（LLM根据描述调用，描述必须精确）3) 幂等性（重复调用结果一致，便于重试）4) 错误处理（工具失败时返回有意义的错误信息，而非抛异常）5) 合理的粒度（太细太粗都不好）6) 参数类型严格（用枚举而非自由文本）。工具描述质量直接影响LLM调用准确率。"
+  },
+  {
+    "id": "q038",
+    "topic": "Agent与工具调用",
+    "question": "什么是 Chain of Thought？在 Agent 中怎么应用？",
+    "difficulty": "medium",
+    "answer_guide": "Chain of Thought（思维链）通过让LLM逐步展示推理过程（step-by-step reasoning），提升复杂推理任务的准确性。在Agent中应用：prompt中明确要求先分析再行动（ReAct的Thought步骤）；通过few-shot示例展示正确的推理模式；对复杂场景设计分解→规划→执行的多步流程。CoT的关键价值：让LLM先\"想清楚\"再行动，降低工具误调用率。"
+  },
+  {
+    "id": "q039",
+    "topic": "Agent与工具调用",
+    "question": "如何处理 Agent 工具调用失败的情况？",
+    "difficulty": "medium",
+    "answer_guide": "健壮的错误处理策略：1) 结构化错误返回（工具失败返回{success: false, error: '原因'}而非抛异常）2) 重试机制（对临时性失败如网络超时自动重试，指数退避）3) 错误信息透传（将错误信息作为Observation送给LLM，让其调整策略）4) Fallback工具（主工具失败切换备选）5) 最大重试限制（防止无限重试）6) 用户通知（超出自动处理能力时优雅降级告知用户）。"
+  },
+  {
+    "id": "q040",
+    "topic": "Agent与工具调用",
+    "question": "多工具并发调用需要注意什么？",
+    "difficulty": "hard",
+    "answer_guide": "并发工具调用（parallel function calling）优势：减少总延迟。注意事项：1) 依赖关系（工具A的输出是工具B的输入时必须串行）2) 资源竞争（多工具同时写同一状态导致冲突）3) 并发限制（API rate limit下并发调用可能超限）4) 错误处理（部分工具失败时的整体策略）5) 结果合并（将多个并发结果组装后送给LLM）。Python中用asyncio.gather实现，注意设置信号量控制并发数。"
+  },
+  {
+    "id": "q041",
+    "topic": "Agent与工具调用",
+    "question": "如何设计 Agent 的记忆机制？",
+    "difficulty": "hard",
+    "answer_guide": "Agent记忆分层：1) 短期记忆（当前会话对话历史，存于context window）2) 长期记忆（跨会话的用户偏好/历史，存于向量库或KV存储）3) 工具记忆（已执行的工具调用及结果，当前会话内）4) 知识记忆（外部文档，通过RAG访问）。工程实现：短期用消息数组管理（限长度）；长期用embedding检索相关记忆注入context；避免上下文爆炸是核心挑战。"
+  },
+  {
+    "id": "q042",
+    "topic": "Agent与工具调用",
+    "question": "LangChain 和手写 Agent 循环各有什么优缺点？",
+    "difficulty": "medium",
+    "answer_guide": "LangChain优点：快速原型、内置大量工具和链、社区活跃。缺点：抽象层太厚（调试困难）、版本变化频繁（升级成本高）、灵活性受限（定制复杂逻辑时反受约束）、性能overhead。手写Agent优点：完全可控、易于调试、性能更好、依赖更少。缺点：开发成本高。生产建议：先用LangChain验证思路，复杂/高性能场景换手写实现。"
+  },
+  {
+    "id": "q043",
+    "topic": "Agent与工具调用",
+    "question": "什么是 Plan-and-Execute Agent？适合什么场景？",
+    "difficulty": "hard",
+    "answer_guide": "Plan-and-Execute将Agent分为两个阶段：Planner（一次性生成完整执行计划）→ Executor（按计划逐步执行工具调用）。与ReAct区别：ReAct边思考边行动（动态），P&E先全量规划再执行（静态）。优势：计划可人工审核、适合任务步骤可预知的场景（数据分析、报告生成）。劣势：执行过程中若遇到意外无法动态调整计划。适合任务确定性强、步骤较长的工作流。"
+  },
+  {
+    "id": "q044",
+    "topic": "Agent与工具调用",
+    "question": "如何评估一个 AI Agent 的质量？",
+    "difficulty": "medium",
+    "answer_guide": "Agent评估多维度：1) 任务成功率（end-to-end task completion rate）2) 工具调用准确率（正确选择工具和参数的比例）3) 步骤效率（完成任务所需的工具调用次数，越少越好）4) 错误恢复能力（遇到工具失败时的处理成功率）5) 延迟和成本（token消耗、总执行时间）6) 安全性（是否有越权调用、数据泄露风险）。构建benchmark dataset，自动化持续评估。"
+  },
+  {
+    "id": "q045",
+    "topic": "Agent与工具调用",
+    "question": "什么是 MCP（Model Context Protocol）？对 Agent 开发有什么意义？",
+    "difficulty": "hard",
+    "answer_guide": "MCP（Anthropic提出）是LLM与外部工具/数据源交互的标准化协议，类似于Agent的USB接口。解决问题：工具接口碎片化（每家LLM有不同的function calling格式）。MCP定义统一的工具描述、调用和响应格式，使工具可跨模型复用。对Agent开发意义：降低工具开发成本（一次开发多模型可用）、促进工具生态建设、Claude Code等产品已原生支持MCP。"
+  },
+  {
+    "id": "q046",
+    "topic": "Agent与工具调用",
+    "question": "如何设计一个安全的 AI Agent？防止哪些风险？",
+    "difficulty": "hard",
+    "answer_guide": "Agent安全风险和防御：1) Prompt Injection（用户通过输入篡改Agent行为）→ 工具输入验证、系统prompt隔离 2) 越权操作（Agent执行超出授权范围的操作）→ 最小权限原则、操作白名单 3) 数据泄露（Agent读取敏感信息后外传）→ 输出过滤、工具访问控制 4) 资源滥用（无限循环消耗API费用）→ 调用次数限制、预算上限 5) 幻觉导致的错误操作 → 关键操作需人工确认（human-in-the-loop）。"
+  },
+  {
+    "id": "q047",
+    "topic": "Agent与工具调用",
+    "question": "多 Agent 系统（Multi-Agent）是什么？什么时候需要用？",
+    "difficulty": "hard",
+    "answer_guide": "Multi-Agent系统由多个专职Agent协作完成复杂任务，通常有Orchestrator（协调者）和Worker Agent（执行者）角色。适用场景：任务过于复杂单Agent无法处理、不同子任务需要不同专业能力（研究Agent+代码Agent+写作Agent）、并行处理多个子任务加速。挑战：Agent间通信格式、状态同步、错误传播。工具：AutoGen、CrewAI。成本较高，单Agent能解决就不引入Multi-Agent。"
+  },
+  {
+    "id": "q048",
+    "topic": "Agent与工具调用",
+    "question": "如何让 Agent 的工具调用过程对用户可见（可解释性）？",
+    "difficulty": "medium",
+    "answer_guide": "工具调用可视化实现：1) SSE流式输出（将工具调用事件实时推送前端，类型区分：tool_call/tool_result/text）2) 结构化日志（记录每次工具调用的输入输出和耗时）3) 前端展示（折叠面板展示思考过程，用户可展开查看）4) 进度提示（当前执行到哪步，预计还需多久）5) 错误可见性（工具失败时用户可见错误原因）。可解释性对用户建立信任至关重要。"
+  },
+  {
+    "id": "q049",
+    "topic": "场景设计题",
+    "question": "如果让你设计一个企业内部知识库问答系统，你会怎么做？",
+    "difficulty": "medium",
+    "answer_guide": "完整设计：1) 文档处理（PDF/Word解析→OCR→chunk切分→embedding）2) 检索层（hybrid search：BM25+向量，支持元数据过滤如部门/时间）3) 生成层（RAG prompt + 引用来源输出）4) 权限控制（不同用户只能访问授权文档）5) 反馈机制（用户踩赞改善系统）6) 管理后台（文档上传、索引状态查看）7) 监控（query日志、回答质量追踪）。技术栈：FastAPI + ChromaDB/Milvus + BGE + DeepSeek。"
+  },
+  {
+    "id": "q050",
+    "topic": "场景设计题",
+    "question": "给你一个客服机器人的需求，如何用 AI 技术实现？",
+    "difficulty": "medium",
+    "answer_guide": "客服机器人设计要点：1) 意图识别（区分咨询/投诉/退款等）2) 知识库RAG（产品手册、FAQ向量化）3) 流程型问题用决策树（退款流程有固定步骤）4) 复杂问题转人工（置信度低时触发人工接入）5) 多轮对话状态维护（上下文记忆）6) 情绪识别（检测用户负面情绪，优先处理）7) 人工坐席辅助（AI给坐席推荐回复，而非完全替代）。关键：设计清晰的fallback机制，避免机器人答非所问。"
+  },
+  {
+    "id": "q051",
+    "topic": "场景设计题",
+    "question": "如何构建一个能自动分析财报的 AI 系统？",
+    "difficulty": "hard",
+    "answer_guide": "财报分析系统设计：1) 文档解析（PDF解析，处理表格/图表，tabula-py/pdfplumber）2) 结构化提取（用LLM抽取关键指标：营收、利润、增长率）3) 数值验证（对提取的数字做交叉验证，防止幻觉）4) 对比分析（同比/环比自动计算，历史数据库查询）5) 风险信号识别（关键词检测：诉讼、商誉减值）6) 报告生成（模板化输出+自然语言摘要）。难点：表格数据精准提取、数字幻觉控制。"
+  },
+  {
+    "id": "q052",
+    "topic": "场景设计题",
+    "question": "设计一个代码审查 AI Agent，需要考虑哪些因素？",
+    "difficulty": "hard",
+    "answer_guide": "代码审查Agent设计：1) 工具集（代码静态分析工具调用：ESLint/Pylint、安全扫描：Bandit/Semgrep、测试覆盖率检查）2) 多维度审查（功能正确性、代码风格、安全漏洞、性能、可维护性）3) 上下文感知（理解整个代码库的约定，而非单文件孤立分析）4) 分级反馈（error/warning/suggestion分级，不过度报告）5) 解释性（说清楚为什么有问题，给出改进建议）6) CI/CD集成（PR自动触发）。关键：减少false positive，保证开发者信任。"
+  },
+  {
+    "id": "q053",
+    "topic": "场景设计题",
+    "question": "电商平台想做智能商品推荐，你会怎么设计？",
+    "difficulty": "medium",
+    "answer_guide": "AI推荐系统设计：1) 传统推荐（协同过滤、矩阵分解）处理行为数据 2) LLM增强（理解用户自然语言需求）3) 多路召回（行为相似度+内容相似度+实时热点）4) 精排（CTR预测模型+LLM重排）5) 多样性保证（避免信息茧房）6) 冷启动处理（新用户/新商品策略）7) 实时性（用户行为实时更新推荐）。LLM的核心价值：理解复杂意图（\"送给老爸60岁生日礼物\"→推断价格区间、品类）。"
+  },
+  {
+    "id": "q054",
+    "topic": "场景设计题",
+    "question": "如何构建一个多模态的简历筛选系统？",
+    "difficulty": "hard",
+    "answer_guide": "多模态简历筛选：1) 文档解析（PDF/Word/图片简历，OCR提取文本）2) 结构化提取（LLM抽取：学历/工作经历/技能/项目）3) JD对齐评分（简历embedding vs JD embedding相似度，关键技能匹配）4) 多维度评估（技能匹配度/经验年限/项目质量/教育背景）5) 可解释输出（说明通过/拒绝的具体理由）6) 偏见检测（确保不因性别/院校名歧视）7) 人工复核接口（边界case转HR）。注意：AI辅助决策，最终由人决定。"
+  },
+  {
+    "id": "q055",
+    "topic": "场景设计题",
+    "question": "设计一个 AI 写作助手，如何保证内容质量？",
+    "difficulty": "medium",
+    "answer_guide": "AI写作助手质量保证：1) 输入理解（准确理解用户写作意图、风格、目标受众）2) 分步生成（大纲→段落→润色，逐步细化）3) 一致性检查（前后逻辑一致、人名/数据一致）4) 事实验证（关键数据引用RAG检索）5) 风格控制（正式/轻松/技术文档等模板）6) 抄袭检测（对比相似度）7) 用户反馈循环（用户修改记录，持续优化生成偏好）。关键：AI生成+人工审核的协作模式，而非完全自动化。"
+  },
+  {
+    "id": "q056",
+    "topic": "场景设计题",
+    "question": "如何用 RAG 技术提升医疗诊断辅助系统的准确性？",
+    "difficulty": "hard",
+    "answer_guide": "医疗RAG系统关键设计：1) 高质量知识库（权威医学指南、临床路径，需医学专家审核）2) 精准召回（症状→疾病的精确匹配，hybrid search）3) 置信度输出（明确标注推断依据和不确定性）4) 引用溯源（每条建议注明来自哪篇指南/研究）5) 禁止跨越边界（AI只做辅助，强调必须医生确认）6) 罕见病处理（知识库缺失时明确说明，不猜测）7) 数据安全（患者数据脱敏，HIPAA合规）。医疗场景：准确性 > 速度，宁可不答也不乱答。"
+  },
+  {
+    "id": "q057",
+    "topic": "场景设计题",
+    "question": "设计一个智能面试官系统（如 PrepSensei），核心难点是什么？",
+    "difficulty": "hard",
+    "answer_guide": "智能面试官核心难点：1) 个性化追问（根据用户回答质量动态决定是否深挖，需要Agent判断能力）2) 多源知识融合（简历+JD+题库三路RAG，上下文管理复杂）3) 评估准确性（如何客观量化回答质量，避免LLM夸赞倾向）4) 流式交互体验（SSE保证低延迟感知）5) 面试节奏控制（不能太快/太慢，追问要自然）6) 面试报告生成（结构化总结强弱项）。关键差异化：追问质量，这是死背题库产品做不到的。"
+  },
+  {
+    "id": "q058",
+    "topic": "场景设计题",
+    "question": "如何设计一个 AI 编程助手的上下文管理系统？",
+    "difficulty": "hard",
+    "answer_guide": "编程助手上下文管理：1) 代码感知（当前文件、相关文件、项目结构，LSP协议获取语义信息）2) 相关性检索（根据光标位置检索最相关的代码片段和文档）3) 动态裁剪（上下文窗口有限，按相关性动态选择注入哪些内容）4) 会话记忆（当前对话历史 + 本次会话已修改的内容）5) 项目级知识（README、规范文档、历史PR）。Cursor/GitHub Copilot的核心竞争力就是上下文质量，比谁注入的内容更精准。"
+  },
+  {
+    "id": "q059",
+    "topic": "场景设计题",
+    "question": "如何为一个面向C端用户的 AI 产品做 Prompt 安全防护？",
+    "difficulty": "medium",
+    "answer_guide": "C端AI产品安全防护：1) Input过滤（关键词检测、分类器检测有害意图）2) System Prompt保护（防止用户通过prompt injection泄露系统提示）3) Output过滤（后置内容安全检测，过滤有害/违规内容）4) Rate limiting（防止滥用）5) 用户反馈机制（举报按钮+人工审核）6) Jailbreak检测（检测常见越狱模式）7) 上下文隔离（用户A的内容不泄露给用户B）。平衡：过度过滤影响体验，过松有合规风险。"
+  },
+  {
+    "id": "q060",
+    "topic": "场景设计题",
+    "question": "如何设计一个 AI 数据分析助手，让非技术用户也能使用？",
+    "difficulty": "medium",
+    "answer_guide": "AI数据分析助手设计：1) 自然语言转查询（Text-to-SQL或Text-to-Python，让用户用中文提问）2) 查询验证（执行前展示将运行的SQL/代码，用户确认）3) 结果可视化（自动选择合适图表类型）4) 解释层（用自然语言解释分析结论）5) 错误友好化（SQL报错时用自然语言解释问题）6) 迭代优化（用户说\"只看今年的\" → 自动修改查询）。核心：LLM做意图理解和代码生成，沙箱隔离执行代码，保证安全。"
+  },
+  {
+    "id": "q061",
+    "topic": "场景设计题",
+    "question": "设计一个支持多语言的 AI 客服系统，如何处理语言切换和翻译？",
+    "difficulty": "medium",
+    "answer_guide": "多语言AI客服设计：1) 语言检测（自动识别用户输入语言）2) 统一内部处理（将所有输入翻译为英文或中文后走统一RAG pipeline）3) 知识库多语言化（关键知识库准备多语言版本，或实时翻译）4) 输出语言匹配（LLM用检测到的语言回复）5) 特定语言的模型选型（某些语言有专优模型）6) 文化适配（不同地区用户的沟通风格差异）。成本考量：实时翻译API费用 vs 多语言模型选型。"
+  },
+  {
+    "id": "q062",
+    "topic": "场景设计题",
+    "question": "如何设计一个 LLM 应用的 A/B 测试框架？",
+    "difficulty": "hard",
+    "answer_guide": "LLM A/B测试框架设计：1) 流量分配（用户ID哈希保证同一用户一致体验）2) 变量控制（只改一个变量：prompt/模型/retrieval策略）3) 指标收集（自动指标+人工评估+用户行为指标）4) 统计显著性（LLM输出随机性大，需要足够样本量）5) 评估日志（完整记录prompt、response、context，便于事后分析）6) 快速回滚（发现问题能立即切回对照组）。LLM A/B测试特殊性：输出是文本，需要LLM-as-judge作为评估信号。"
+  },
+  {
+    "id": "q063",
+    "topic": "场景设计题",
+    "question": "设计一个实时语音面试助手，技术架构是什么？",
+    "difficulty": "hard",
+    "answer_guide": "实时语音面试助手架构：1) 语音输入（ASR：Whisper或实时流式ASR）2) VAD（语音活动检测，判断用户说完了）3) 文本送入面试Agent（RAG检索+追问决策）4) 回复生成（流式LLM生成）5) TTS（文字转语音，语音克隆可选）6) 低延迟优化（ASR→LLM→TTS全链路<2秒）。技术挑战：语音断句准确性、端到端延迟控制、背景噪音处理。实际部署可用Deepgram（ASR）+ DeepSeek（LLM）+ ElevenLabs（TTS）。"
+  },
+  {
+    "id": "q064",
+    "topic": "场景设计题",
+    "question": "如何为 ToB 企业客户定制化一个私有化部署的 AI 助手？",
+    "difficulty": "hard",
+    "answer_guide": "私有化部署AI助手要点：1) 模型选型（开源模型优先：Qwen/LLaMA，满足数据不出境要求）2) 部署方案（本地服务器/私有云，Docker + vLLM/Ollama推理服务）3) 知识库（企业内部文档私有化处理，embedding模型也需本地部署）4) 权限管理（对接企业SSO，角色权限控制）5) 监控合规（操作日志满足审计要求）6) 定制化（企业专属prompt、品牌形象、工作流集成）。交付物：容器镜像+部署文档+运维手册。"
+  },
+  {
+    "id": "q065",
+    "topic": "岗位匹配度",
+    "question": "你为什么想做 AI 应用工程师而不是算法工程师？",
+    "difficulty": "easy",
+    "answer_guide": "诚实且有说服力的回答：AI应用工程师处于用户和模型之间的关键位置，能直接看到AI技术对用户产生价值的过程（而非停留在论文和实验中）。个人优势匹配：工程能力强（系统设计、API开发、前后端）、能快速迭代产品、对用户体验敏感。同时也要展示对AI底层的理解，而非纯\"调API工程师\"。大厂AI应用岗位需要懂工程又懂模型的复合型人才。"
+  },
+  {
+    "id": "q066",
+    "topic": "岗位匹配度",
+    "question": "你觉得 AI 应用工程师最重要的能力是什么？",
+    "difficulty": "easy",
+    "answer_guide": "核心能力三角：1) 工程能力（系统设计、API开发、性能优化、部署运维）2) AI理解（知道各种技术的边界和适用场景，能做正确的技术选型）3) 产品思维（理解用户需求，将AI能力转化为产品价值）。同等重要的软能力：快速学习（领域变化太快）、沟通能力（对接算法团队和产品/运营）、工程严谨性（AI系统容错设计、监控）。"
+  },
+  {
+    "id": "q067",
+    "topic": "岗位匹配度",
+    "question": "你怎么看待 LLM 幻觉问题？在工程上怎么缓解？",
+    "difficulty": "medium",
+    "answer_guide": "幻觉（Hallucination）是LLM固有特性而非bug，根本原因是生成式模型基于概率分布生成内容。工程缓解策略：1) RAG（用检索增强限制LLM在有依据的范围内回答）2) 提示工程（明确指令：无法确定时说不知道）3) 引用机制（要求输出来源，便于核查）4) 置信度输出（不确定时降低语气）5) 事实核查层（对关键数字/事实做后置验证）6) 选择合适模型（更大更强的模型幻觉率更低）。关键认知：彻底消除不现实，工程上做到可控和可验证。"
+  },
+  {
+    "id": "q068",
+    "topic": "岗位匹配度",
+    "question": "如果让你 3 个月内快速成长为合格的 AI 工程师，你的计划是什么？",
+    "difficulty": "medium",
+    "answer_guide": "结构化成长计划：第1个月（基础扎实）→ 深读LLM核心论文、掌握主流框架API（OpenAI/DeepSeek/LangChain）、跟着开源项目搭RAG系统。第2个月（实战项目）→ 独立完成完整AI应用（有部署、有评估体系）、参与开源PR、复现经典论文。第3个月（工程深度）→ 优化系统性能、构建评估pipeline、阅读生产级代码库。关键：每周输出一个可运行的demo，比看100篇教程有效。"
+  },
+  {
+    "id": "q069",
+    "topic": "岗位匹配度",
+    "question": "你为什么选择我们公司？了解我们的 AI 产品吗？",
+    "difficulty": "easy",
+    "answer_guide": "体现真实研究：说明了解该公司的具体AI产品/技术特点（需面试前做功课），指出与自己技术方向的契合点。避免说\"贵司是大厂\"这类空话。好的回答：我关注到你们[具体产品]用了[具体技术]，我在[类似场景]做过[具体工作]，认为可以带来价值。同时可以提出有见地的问题：了解团队技术方向、面临的挑战、AI产品的评估方式。"
+  },
+  {
+    "id": "q070",
+    "topic": "岗位匹配度",
+    "question": "你如何平衡技术深度和广度？",
+    "difficulty": "medium",
+    "answer_guide": "AI领域技术广度：熟悉LLM全链路（预训练→微调→对齐→推理→应用）。深度选择原则：在核心工作方向（RAG、Agent）要有深度理解（能回答原理性问题、能做架构设计），在边缘领域（CV、强化学习）维持广度了解。实践策略：深度领域通过动手项目建立，广度领域通过论文精读和技术博客覆盖。AI领域变化快，广度保持技术敏感性，深度保持竞争壁垒。"
+  },
+  {
+    "id": "q071",
+    "topic": "岗位匹配度",
+    "question": "遇到不懂的技术问题，你通常怎么解决？",
+    "difficulty": "easy",
+    "answer_guide": "系统化解决思路：1) 准确定义问题（是什么不会？边界在哪？）2) 查官方文档（第一手信息，避免过时博客）3) 搜索相关issue（GitHub/StackOverflow）4) 源码阅读（理解框架内部机制）5) 最小化复现（隔离问题）6) 社区求助（Discord/微信群，提供充分的问题上下文）7) 实验验证（不假设，写代码验证理解）。避免说\"问ChatGPT\"然后复制粘贴，展示独立解决问题的能力。"
+  },
+  {
+    "id": "q072",
+    "topic": "岗位匹配度",
+    "question": "你有什么想问我们的？",
+    "difficulty": "easy",
+    "answer_guide": "好的问题体现候选人深度思考。推荐问：1) 团队目前在AI方向面临最大的技术挑战是什么？2) 这个岗位的AI应用工程师主要在哪些场景发挥作用？3) 团队如何评估AI应用的质量？有没有完善的评估pipeline？4) 模型选型是自研、finetune还是主要调用API？5) 新人通常需要多长时间能独立负责一个模块？避免问薪资（非最后阶段）、假期等，展示对技术和成长的关注。"
+  },
+  {
+    "id": "q073",
+    "topic": "岗位匹配度",
+    "question": "如果你做的功能上线后用户反馈效果差，你会怎么处理？",
+    "difficulty": "medium",
+    "answer_guide": "系统化排查流程：1) 收集数据（用户反馈类型、复现率、影响范围）2) 根因分析（是AI质量问题？还是产品设计问题？或工程bug？）3) 快速应急（如果严重，临时降级或回滚）4) 深度分析（review query日志、检索结果、LLM输出，定位链路哪个环节出问题）5) 修复方案（prompt调整/检索策略优化/模型切换）6) 验证上线（A/B测试，不直接全量）7) 复盘文档（沉淀经验，防止再次发生）。展示数据驱动和系统化思维。"
+  },
+  {
+    "id": "q074",
+    "topic": "岗位匹配度",
+    "question": "你对 AI 应用开发的未来趋势有什么判断？",
+    "difficulty": "medium",
+    "answer_guide": "有见地的趋势判断：1) Agent化（从单次问答到自主完成多步任务）2) 多模态（文本+图片+音频+视频的综合处理）3) 本地小模型（设备端推理，隐私+低延迟）4) AI工作流编排（LLM作为系统组件，而非独立产品）5) 评估体系成熟化（从\"感觉好\"到有量化指标）6) 推理成本下降（更多场景经济可行）。关键：判断要有依据，能举具体例子，体现对行业的持续观察。"
+  },
+  {
+    "id": "q075",
+    "topic": "岗位匹配度",
+    "question": "你在之前的项目中犯过最大的技术错误是什么？怎么从中学习的？",
+    "difficulty": "medium",
+    "answer_guide": "展示成长心态：诚实承认错误（如低估了RAG评估的重要性导致上线后效果不达预期、对token成本估算不准导致超预算）→ 说明影响范围 → 如何发现和修复 → 从中学到什么（建立评估体系、提前做成本测算）→ 如何避免再次发生（工程流程改进）。面试官更关注你是否能从错误中学习，而非错误本身。不要编造从未犯过的错误，真实案例更有说服力。"
+  },
+  {
+    "id": "q076",
+    "topic": "岗位匹配度",
+    "question": "你如何看待 AI 替代人工的问题？作为 AI 工程师你的价值在哪？",
+    "difficulty": "medium",
+    "answer_guide": "成熟的认知框架：AI替代的是重复性、规则性工作，AI工程师的价值在于：1) 判断AI能力边界（知道哪些场景适合AI、哪些不适合）2) 构建可靠的AI系统（稳定性、安全性、可解释性）3) 人机协作设计（不是简单自动化，而是放大人类能力）4) 持续迭代（AI系统不是一次性的，需要持续评估和优化）。作为AI工程师，要主动学习让自己不被替代：专注于创造性、系统性、需要判断力的工作。"
+  },
+  {
+    "id": "q077",
+    "topic": "岗位匹配度",
+    "question": "如果团队技术方向和你个人判断有分歧，你怎么处理？",
+    "difficulty": "medium",
+    "answer_guide": "成熟的处理方式：1) 充分表达（在合适场合（技术评审会、1:1）清晰说明自己的判断和理由）2) 倾听对方（理解团队方向背后的约束：业务需求、资源、历史包袱）3) 数据说话（如果有条件，小规模验证自己的方案再讨论）4) 执行决策（在讨论结束后全力执行团队决策，不消极对待）5) 事后复盘（结果出来后共同复盘，而非\"我说过\"的心态）。展示既有主见又有团队意识。"
+  },
+  {
+    "id": "q078",
+    "topic": "岗位匹配度",
+    "question": "你对开源社区有贡献吗？GitHub 主页有什么代表作？",
+    "difficulty": "easy",
+    "answer_guide": "诚实介绍已有贡献（项目star数、PR记录、技术博客）。如果贡献不多，可以说明：正在积极参与的方向（如学习过程中在某开源项目提了issue或文档PR）→ 近期计划（将silver-memory等项目开源、写技术总结博客）。关键：不要夸大，但要展示主动参与社区的意愿和具体行动。面试官看重的是真实的工程能力和持续学习的态度，而非凭空的star数。"
+  },
+  {
+    "id": "q079",
+    "topic": "岗位匹配度",
+    "question": "你的薪资期望是多少？如何评估自己的市场价值？",
+    "difficulty": "easy",
+    "answer_guide": "评估自己市场价值的方法：参考同类岗位薪资范围（拉勾/BOSS直聘/Glassdoor）、结合自身技能匹配度（核心技能RAG/Agent/Python是否市场稀缺）、考虑公司平台价值（大厂给的学习资源和背书价值）。回答策略：给出合理范围而非死价，表达对岗位整体（成长空间、团队、项目）的综合考量，避免在初面就过于强硬谈薪资。体现对自身价值的清晰认知。"
+  },
+  {
+    "id": "q080",
+    "topic": "岗位匹配度",
+    "question": "五年后你希望自己成为什么样的工程师？",
+    "difficulty": "easy",
+    "answer_guide": "有规划感的回答：近期（1-2年）→ 在某垂直方向（如对话AI系统）成为团队内的技术骨干，能独立负责完整AI产品模块；中期（3-5年）→ 具备AI系统架构设计能力，能lead小团队攻克技术难题，在某个开源领域有实质贡献；长期方向 → 成为既懂工程又懂业务的技术leader，或深耕技术成为某细分领域专家。展示志向时需结合公司的发展方向，体现双向匹配。"
+  },
+  {
+    "id": "q081",
+    "topic": "自我介绍与项目经历",
+    "question": "你的项目用了哪些开源框架？为什么做这样的技术选型？",
+    "difficulty": "medium",
+    "answer_guide": "技术选型需要体现决策过程而非结果：说明备选方案（如LangChain vs 手写、ChromaDB vs Pinecone）、评估维度（成本/性能/可控性/学习曲线/社区活跃度）、最终选择理由（与项目规模和团队能力匹配）。好的选型没有绝对对错，关键是能说清楚权衡逻辑。体现工程成熟度：选型要为项目服务，而非追求最新最热的技术。"
+  },
+  {
+    "id": "q082",
+    "topic": "自我介绍与项目经历",
+    "question": "你是如何做项目测试的？有写过 AI 相关的测试吗？",
+    "difficulty": "medium",
+    "answer_guide": "AI系统测试与传统软件测试的区别：LLM输出非确定性，无法用assertEqual。AI测试策略：单元测试（工具函数、数据处理）→ 集成测试（完整pipeline）→ AI质量测试（golden dataset + LLM-as-judge评估）→ 回归测试（新版本和旧版本对比）。工程实践：pytest做基础测试，RAGAS框架评估RAG质量，提示词变更必须跑评估集。体现对AI系统工程严谨性的理解。"
+  },
+  {
+    "id": "q083",
+    "topic": "RAG系统理解",
+    "question": "如何处理 RAG 中的长文档？context window 不够用怎么办？",
+    "difficulty": "hard",
+    "answer_guide": "长文档处理策略：1) 精准检索（只送入最相关的top-k chunks，不全文送入）2) 分层摘要（对长文档先生成摘要，摘要向量化，查询时先用摘要定位再精细检索）3) Map-Reduce模式（将文档分段分别处理，再汇总）4) 选择长上下文模型（Claude/Gemini支持100k+ token）5) 信息压缩（对context做提炼和摘要后再送入LLM）。核心原则：宁可精准选择少量内容，也比强行塞入全文要好。"
+  },
+  {
+    "id": "q084",
+    "topic": "Agent与工具调用",
+    "question": "如何实现 Agent 的流式输出（Streaming）？",
+    "difficulty": "medium",
+    "answer_guide": "Agent流式输出实现：LLM API支持stream=True参数，返回token流。复杂性：Agent有思考过程（工具调用）和最终输出两部分，需要设计SSE事件类型区分。实践方案：定义事件类型（thinking/tool_call/tool_result/text_delta/done）→ 后端SSE推送 → 前端按类型渲染（工具调用可折叠显示）。注意：工具调用本身不是流式的（需等工具返回结果），只有LLM文本生成部分是流式的。Python用asyncio生成器实现async streaming。"
+  },
+  {
+    "id": "q085",
+    "topic": "场景设计题",
+    "question": "如何构建一个支持百万级文档的企业知识库系统？",
+    "difficulty": "hard",
+    "answer_guide": "大规模知识库工程设计：1) 分布式向量存储（Milvus/Weaviate集群，支持水平扩展）2) 异步索引pipeline（Celery/Kafka处理文档入库队列，不阻塞查询）3) 分片策略（按业务域/部门分表，检索时路由到对应shard）4) 缓存层（Redis缓存热门query的embedding和结果）5) 读写分离（索引更新和查询服务分离部署）6) 监控体系（索引延迟、查询QPS、向量库内存使用率）。百万级文档的核心挑战是召回效率和系统稳定性。"
+  }
+]

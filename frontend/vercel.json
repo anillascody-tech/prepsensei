@@ -1,0 +1,5 @@
+{
+  "env": {
+    "NEXT_PUBLIC_BACKEND_URL": "https://prepsensei-backend.onrender.com"
+  }
+}

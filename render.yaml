@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: prepsensei-backend
+    env: docker
+    dockerfilePath: ./backend/Dockerfile
+    rootDir: .
+    plan: free
+    envVars:
+      - key: DEEPSEEK_API_KEY
+        sync: false
+      - key: VERCEL_URL
+        sync: false
+      - key: MAX_LLM_CALLS_PER_SESSION
+        value: "50"
