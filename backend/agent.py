@@ -77,7 +77,14 @@ class InterviewAgent:
             topic = tool_args.get("topic", "")
             n_results = tool_args.get("n_results", 5)
             questions = self.rag.retrieve_questions(self.session_id, topic, n_results)
-            return json.dumps(questions, ensure_ascii=False)
+            resume_ctx = self.rag.retrieve_resume_context(self.session_id, topic, n=2)
+            jd_ctx = self.rag.retrieve_jd_context(self.session_id, topic, n=2)
+            result = {
+                "questions": questions,
+                "resume_context": [{"section": r["section"], "text": r["text"]} for r in resume_ctx],
+                "jd_context": [{"section": r["section"], "text": r["text"]} for r in jd_ctx],
+            }
+            return json.dumps(result, ensure_ascii=False)
 
         elif tool_name == "evaluate_and_route":
             answer = tool_args.get("answer", "")

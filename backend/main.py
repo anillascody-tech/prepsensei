@@ -33,6 +33,8 @@ async def lifespan(app: FastAPI):
     # Seed question bank (will be called after RAG module exists)
     try:
         from rag import rag_system
+        # Release per-session ChromaDB collections when sessions expire/are deleted
+        session_store.on_delete(rag_system.cleanup_session)
         qb_path = os.path.join(os.path.dirname(__file__), "data", "question_bank.json")
         if os.path.exists(qb_path):
             with open(qb_path, "r", encoding="utf-8") as f:

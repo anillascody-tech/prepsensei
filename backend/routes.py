@@ -64,6 +64,11 @@ async def start_interview(session_id: str, request: Request):
     if not session.resume_text or not session.jd_text:
         raise HTTPException(status_code=400, detail="Resume and JD required before starting")
 
+    # Run synchronous embedding calls off the event loop to avoid stalling
+    # all concurrent requests during the DeepSeek embedding API roundtrip.
+    await asyncio.to_thread(rag_system.index_resume, session_id, session.resume_text)
+    await asyncio.to_thread(rag_system.index_jd, session_id, session.jd_text)
+
     agent = InterviewAgent(session_id, deepseek_client, rag_system, session_store)
     modules = await agent.generate_modules(session.resume_text, session.jd_text)
     async with session.lock:
