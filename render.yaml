@@ -2,8 +2,8 @@ services:
   - type: web
     name: prepsensei-backend
     env: docker
-    dockerfilePath: ./Dockerfile
-    rootDir: ./backend
+    dockerfilePath: ./backend/Dockerfile
+    rootDir: .
     plan: free
     envVars:
       - key: DEEPSEEK_API_KEY
