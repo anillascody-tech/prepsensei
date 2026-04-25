@@ -2,8 +2,10 @@ services:
   - type: web
     name: prepsensei-backend
     env: docker
-    dockerfilePath: ./Dockerfile
-    rootDir: ./backend
+    # Build context is repo root; Dockerfile copies from backend/ explicitly.
+    # This matches Render's manual-service default (no rootDir override) so
+    # it works whether or not the dashboard is reading render.yaml.
+    dockerfilePath: ./backend/Dockerfile
     plan: free
     envVars:
       - key: DEEPSEEK_API_KEY

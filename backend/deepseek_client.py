@@ -21,11 +21,7 @@ class DeepSeekClient:
             kwargs["stream"] = True
         return await self.client.chat.completions.create(**kwargs)
 
-    async def embed(self, texts: list[str]) -> list[list[float]]:
-        response = await self.client.embeddings.create(
-            model="deepseek-embedding",
-            input=texts
-        )
-        return [item.embedding for item in response.data]
+    # NOTE: DeepSeek does not expose an embeddings endpoint. Embeddings are
+    # produced locally by ChromaDB's DefaultEmbeddingFunction (see rag.py).
 
 deepseek_client = DeepSeekClient()

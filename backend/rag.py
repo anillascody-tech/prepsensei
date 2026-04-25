@@ -1,33 +1,17 @@
-import asyncio
 import re
 from typing import List
 import chromadb
-from chromadb import EmbeddingFunction, Documents, Embeddings
+from chromadb.utils import embedding_functions
 from rank_bm25 import BM25Okapi
 
-from deepseek_client import DeepSeekClient, deepseek_client as _default_client
+from deepseek_client import DeepSeekClient
 from parser import detect_section
 
 
-class DeepSeekEmbeddingFunction(EmbeddingFunction):
-    """ChromaDB-compatible embedding function using DeepSeek API."""
-
-    def __init__(self, client: DeepSeekClient = None):
-        self._client = client or _default_client
-
-    def __call__(self, input: Documents) -> Embeddings:
-        """Synchronous wrapper — ChromaDB calls this synchronously."""
-        try:
-            loop = asyncio.get_event_loop()
-            if loop.is_running():
-                import concurrent.futures
-                with concurrent.futures.ThreadPoolExecutor() as pool:
-                    future = pool.submit(asyncio.run, self._client.embed(list(input)))
-                    return future.result()
-            else:
-                return loop.run_until_complete(self._client.embed(list(input)))
-        except RuntimeError:
-            return asyncio.run(self._client.embed(list(input)))
+# DeepSeek does not host an embeddings endpoint, so we use ChromaDB's
+# built-in ONNX MiniLM model (offline, no API key, ~25MB).  DeepSeek is
+# kept for chat completions only.
+_default_embed_fn = embedding_functions.DefaultEmbeddingFunction()
 
 
 class HybridRetriever:
@@ -131,9 +115,9 @@ class HybridRetriever:
 
 
 class RAGSystem:
-    def __init__(self, client: DeepSeekClient = None):
+    def __init__(self, client: DeepSeekClient = None, embed_fn=None):
         self._chroma = chromadb.Client()  # in-memory, NOT PersistentClient
-        self._embed_fn = DeepSeekEmbeddingFunction(client)
+        self._embed_fn = embed_fn or _default_embed_fn
         self._qb_collection = None
         self._qb_retriever: HybridRetriever | None = None
 
