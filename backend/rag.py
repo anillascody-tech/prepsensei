@@ -1,33 +1,9 @@
-import asyncio
 import re
-from typing import List
 import chromadb
-from chromadb import EmbeddingFunction, Documents, Embeddings
+from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
 from rank_bm25 import BM25Okapi
 
-from deepseek_client import DeepSeekClient, deepseek_client as _default_client
 from parser import detect_section
-
-
-class DeepSeekEmbeddingFunction(EmbeddingFunction):
-    """ChromaDB-compatible embedding function using DeepSeek API."""
-
-    def __init__(self, client: DeepSeekClient = None):
-        self._client = client or _default_client
-
-    def __call__(self, input: Documents) -> Embeddings:
-        """Synchronous wrapper — ChromaDB calls this synchronously."""
-        try:
-            loop = asyncio.get_event_loop()
-            if loop.is_running():
-                import concurrent.futures
-                with concurrent.futures.ThreadPoolExecutor() as pool:
-                    future = pool.submit(asyncio.run, self._client.embed(list(input)))
-                    return future.result()
-            else:
-                return loop.run_until_complete(self._client.embed(list(input)))
-        except RuntimeError:
-            return asyncio.run(self._client.embed(list(input)))
 
 
 class HybridRetriever:
@@ -131,11 +107,23 @@ class HybridRetriever:
 
 
 class RAGSystem:
-    def __init__(self, client: DeepSeekClient = None):
+    def __init__(self, embed_fn=None):
         self._chroma = chromadb.Client()  # in-memory, NOT PersistentClient
-        self._embed_fn = DeepSeekEmbeddingFunction(client)
+        self._embed_fn_override = embed_fn  # injected in tests; None = lazy-load default
+        self._embed_fn_instance = None
         self._qb_collection = None
         self._qb_retriever: HybridRetriever | None = None
+
+    @property
+    def _embed_fn(self):
+        """Lazy-load the embedding model on first use to avoid loading at import time."""
+        if self._embed_fn_override is not None:
+            return self._embed_fn_override
+        if self._embed_fn_instance is None:
+            self._embed_fn_instance = SentenceTransformerEmbeddingFunction(
+                model_name="all-MiniLM-L6-v2"
+            )
+        return self._embed_fn_instance
 
     def seed_question_bank(self, questions: list[dict]):
         """Load question bank into ChromaDB. Called on startup."""
